@@ -1,5 +1,3 @@
-apt-get update
-pip install --upgrade pip
 flask
 flask_sqlalchemy
 flask_wtf
