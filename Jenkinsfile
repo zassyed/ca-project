@@ -1,12 +1,17 @@
 node {
-   stage('Local') { // for display purposes
-      // Get some code from a GitHub repository
-      git 'https://github.com/zassyed/ca-project.git'
+   stage('Fetch docker image') {
+       sh 'docker pull harad/codechan'
    }
-   stage('Staging') {
-     sh 'docker run -i --rm --name ca-project -v "$PWD":/home/ubuntu/ca-project -w /home/ubuntu/ca-project sudo install -r requirements'
+   
+   stage('Run application in docker') {
+       sh 'docker run -d -p 8008:5000 harad/codechan'
    }
-   stage('Production') {
-      sh 'pwd/ca-project/python run.py'
+   
+   stage('verify application is running') {
+       sh 'wget 127.0.0.1:8008'
+   }
+   
+   stage('clean up docker container') {
+       sh 'docker stop $(docker ps -a -q -f status=running)'
    }
 }
