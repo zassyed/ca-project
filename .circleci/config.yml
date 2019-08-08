@@ -1,24 +1,5 @@
 version: 2
 jobs:
-<<<<<<< HEAD
- dockerize:
-   machine: true
-   steps:
-     - checkout
-     # Login to docker
-     - image: docker login -u $DOCKER_USER -p $DOCKER_PASS
-
-     # build the application image
-     - run: docker build -t $DOCKER_USER/myapp:$CIRCLE_SHA1 .
-
-     # deploy the image
-     - run: docker push $DOCKER_USER/myapp:$CIRCLE_SHA1
-workflows:
-  version: 2
-  myflow:
-    jobs:
-      - dockerize
-=======
   build:
     docker:
       - image: circleci/<language>:<version TAG>
@@ -37,4 +18,3 @@ workflows:
     jobs:
       - build
       - test
->>>>>>> 5ddbf66fb3d7b0c12cc125365dcc31fd081e9a61
