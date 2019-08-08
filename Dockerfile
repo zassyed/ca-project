@@ -1,5 +1,5 @@
 FROM ubuntu
-MAINTAINER Harald Dahle "harad@ifi.uio.no"
+MAINTAINER Zyyad Ali Shah Syed "zassyed@ifi.uio.no"
 
 ADD . /code
 WORKDIR /code
