@@ -1,6 +1,6 @@
 FROM ubuntu
 MAINTAINER Zyyad Ali Shah Syed "zassyed@ifi.uio.no"
-
+expose 5000
 ADD . /code
 WORKDIR /code
 RUN apt-get update && apt-get install -y python3 && apt-get install -y python3-pip
