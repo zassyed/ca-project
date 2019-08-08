@@ -8,7 +8,7 @@ node {
    }
    
    stage('verify application is running') {
-       sh 'wget 127.0.0.1:8008'
+       sh 'wget 104.155.2.92:8008'
    }
    
    stage('clean up docker container') {
