@@ -1,20 +1,36 @@
-version: 2
+version: 2.0
 jobs:
-  build:
-    docker:
-      - image: circleci/<language>:<version TAG>
-    steps:
-      - checkout
-      - run: <command>
   test:
     docker:
-      - image: circleci/<language>:<version TAG>
+      - image: circleci/python:2.7  # primary container for the build job
     steps:
       - checkout
-      - run: <command>
+      - run:
+          name: dependencies
+          command: pip install --user -r requirements.txt
+      - run:
+          name: My-ca-project
+          command: python run.py
+  dockerize:
+    machine: true
+    steps:
+      - checkout
+      # Login to docker
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      # build the application image
+      - run: docker build -t My-ca-project .
+
+      # # creates tag
+      # - run: docker tag $DOCKER_USER/app:$CIRCLE_SHA1 $DOCKER_USER/app:latest
+
+      # deploy the image
+      - run: docker push My-ca-project
 workflows:
   version: 2
-  build_and_test:
+  myflow:
     jobs:
-      - build
       - test
+      - dockerize:
+          requires:
+            - test
