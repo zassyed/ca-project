@@ -1,7 +1,6 @@
 import os
 import json
 import requests
-export GITHUB_PASSWORD=Gans123#
 # Authentication for user filing issue (must have read/write access to
 # repository to add issue to)
 USERNAME = 'zassyed'
