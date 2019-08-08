@@ -1,5 +1,6 @@
 version: 2
 jobs:
+<<<<<<< HEAD
  dockerize:
    machine: true
    steps:
@@ -17,3 +18,23 @@ workflows:
   myflow:
     jobs:
       - dockerize
+=======
+  build:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: <command>
+  test:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: <command>
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+>>>>>>> 5ddbf66fb3d7b0c12cc125365dcc31fd081e9a61
